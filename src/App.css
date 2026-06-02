@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #1a2744;
+  --tile-bg: #f5e6c8;
+  --tile-bg-highlighted: #e8c87a;
+  --tile-border: #c9a84c;
+  --tile-text: #2c1810;
+  --text-primary: #eaeaea;
+  --text-secondary: #8892a4;
+  --accent: #d4a843;
+  --accent-hover: #c49535;
+  --error-bg: #2d1b1b;
+  --error-text: #ff6b6b;
+  --success-bg: #1b2d1b;
+  --success-accent: #6bcb77;
+  --input-bg: #0a1628;
+  --input-border: #2e4070;
+  --input-focus: #e8c87a;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-tile: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── App Layout ── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at top, #1e2a4a 0%, #1a1a2e 60%);
+}
+
+/* ── Header ── */
+.app-header {
+  padding: 48px 24px 32px;
+  text-align: center;
+  border-bottom: 1px solid rgba(232, 200, 122, 0.15);
+}
+
+.app-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.title-scrabble {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.title-word {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.app-subtitle {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+/* ── Main ── */
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 24px;
+}
+
+.app-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(232, 200, 122, 0.12);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+
+/* ── Form ── */
+.word-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+}
+
+.form-hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.form-input:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(232, 200, 122, 0.12);
+}
+
+/* ── Buttons ── */
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 14px 24px;
+  background: var(--accent);
+  color: #1a1a2e;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  padding: 14px 20px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Result Container ── */
+.result-container {
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-loading {
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 14px;
+}
+
+.result-error {
+  background: var(--error-bg);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.result-error-icon {
+  color: var(--error-text);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.result-error-message {
+  color: var(--error-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.result-success {
+  background: var(--success-bg);
+  border: 1px solid rgba(107, 203, 119, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.result-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--success-accent);
+}
+
+/* ── Scrabble Tiles ── */
+.result-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.letter-tile {
+  position: relative;
+  width: 52px;
+  height: 56px;
+  background: var(--tile-bg);
+  border: 2px solid var(--tile-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-tile);
+  transition: transform 0.2s ease;
+}
+
+.letter-tile--highlighted {
+  background: var(--tile-bg-highlighted);
+  border-color: #b8922a;
+}
+
+.letter-tile:hover {
+  transform: translateY(-2px);
+}
+
+.tile-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--tile-text);
+  line-height: 1;
+}
+
+.tile-score {
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--tile-text);
+  opacity: 0.75;
+}
+
+.result-score {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.result-score strong {
+  color: var(--success-accent);
+  font-size: 18px;
+}
+
+/* ── Footer ── */
+.app-footer {
+  padding: 20px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(232, 200, 122, 0.08);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .app-card {
+    padding: 24px 20px;
+  }
+
+  .title-scrabble {
+    font-size: 36px;
+  }
+
+  .letter-tile {
+    width: 44px;
+    height: 48px;
+  }
+
+  .tile-letter {
+    font-size: 22px;
+  }
+}
