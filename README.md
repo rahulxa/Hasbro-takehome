@@ -11,6 +11,7 @@ A web application that finds the highest scoring valid Scrabble word from a give
 ## Getting Started
 
 Prerequisites: Node.js v18 or higher
+run the following commands from the root folder:
 
 ```bash
 # Install dependencies
